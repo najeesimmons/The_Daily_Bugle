@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'The_Daily_Bugle.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'The_Daily_Bugle',
+        'NAME': 'the_daily_bugle',
     }
 }
 
