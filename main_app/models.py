@@ -1,4 +1,5 @@
 from email.mime import image
+from email.policy import default
 from unicodedata import name
 from django.db import models
 
@@ -22,6 +23,7 @@ class Article(models.Model):
     headline = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     body = models.TextField(max_length=1000)
+    image = models.CharField(max_length=500, default = "https://static.wikia.nocookie.net/marveldatabase/images/9/99/Daily_Bugle_%28Earth-1048%29_from_Marvel%27s_Spider-Man_%28video_game%29_001.jpg/revision/latest?cb=20180930035134")
     freak = models.ForeignKey(
         Freak, on_delete=models.CASCADE, related_name="articles")
     
