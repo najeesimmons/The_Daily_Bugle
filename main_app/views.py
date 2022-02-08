@@ -1,10 +1,13 @@
+from ast import Del
 from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView # <- a class to use files in templates directory as views
 from .models import Freak # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
+from django.urls import reverse
+
 
 # Create your views here.
 
@@ -41,4 +44,22 @@ class FreakCreate(CreateView):
 class FreakDetail(DetailView):
     model = Freak
     template_name = "freak_detail.html"
+
+class FreakUpdate(UpdateView):
+    model = Freak
+    fields = ['name', 'allegiance', 'bio', 'species', 'image',]
+    template_name = "freak_create.html"
+    
+    def get_success_url(self):
+        return reverse('freak_detail', kwargs={'pk': self.object.pk})
+
+class FreakDelete(DeleteView):
+    model = Freak
+    template_name = "freak_delete_confirmation.html"
+    success_url = "/freaks"
+
+
+
+
+
 
