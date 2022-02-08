@@ -4,6 +4,8 @@ from django.http import HttpResponse # <- a class to handle sending a type of re
 from django.views.generic.base import TemplateView # <- a class to use files in templates directory as views
 from .models import Freak # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
+
 # Create your views here.
 
 # Here we will be creating a class called Home and extending it from the View class
@@ -35,4 +37,8 @@ class FreakCreate(CreateView):
     fields = ['name', 'allegiance', 'bio', 'species', 'image',]
     template_name = "freak_create.html"
     success_url = "/freaks/"
+
+class FreakDetail(DetailView):
+    model = Freak
+    template_name = "freak_detail.html"
 
