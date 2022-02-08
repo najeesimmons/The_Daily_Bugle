@@ -22,7 +22,7 @@
 </form>
 <div class="gallery">
   {% for freak in freaks %}
-  <a href="">
+  <a href="{% url 'freak_detail' freak.pk %}">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">
