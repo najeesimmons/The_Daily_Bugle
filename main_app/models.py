@@ -16,3 +16,12 @@ class Freak(models.Model):
 
     class Meta:
         ordering = ['name']
+
+class Article(models.Model):
+
+    headline = models.CharField(max_length=50)
+    author = models.CharField(max_length=50)
+    body = models.TextField(max_length=1000)
+    freak = models.ForeignKey(
+        Freak, on_delete=models.CASCADE, related_name="articles")
+    
