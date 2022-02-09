@@ -4,7 +4,7 @@ from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView # <- a class to use files in templates directory as views
 from .models import Freak # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
-from .models import Article
+from .models import Article # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
@@ -93,5 +93,10 @@ class ArticleUpdate(UpdateView):
     fields = ['headline', 'author', 'body', 'image', 'freak']
     template_name = "article_update.html"
     success_url = "/articles/"
+
+class ArticleDelete(DeleteView):
+    model = Article
+    template_name = "article_delete_confirmation.html"
+    success_url = "/articles"
 
 
