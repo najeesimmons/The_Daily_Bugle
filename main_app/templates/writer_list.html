@@ -22,7 +22,7 @@
 </form>
 <div class="gallery">
   {% for writer in writers %}
-  {#<a href="{% url 'writer_detail' writer.pk %}">#}
+  <a href="{% url 'writer_detail' writer.pk %}">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">

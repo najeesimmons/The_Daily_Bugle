@@ -119,6 +119,7 @@ class WriterList(TemplateView):
             context["header"] = "Our Team"
         return context
 
-class WriterDetail(DeleteView):
+class WriterDetail(DetailView):
     model = Writer
     template_name = "writer_detail.html"
+
