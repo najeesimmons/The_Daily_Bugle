@@ -27,3 +27,5 @@ class Article(models.Model):
     freak = models.ForeignKey(
         Freak, on_delete=models.CASCADE, related_name="articles")
     
+    class Meta:
+        ordering = ['headline']
