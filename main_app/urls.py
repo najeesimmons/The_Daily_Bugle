@@ -12,4 +12,6 @@ urlpatterns = [
     path('freaks/<int:pk>/update', views.FreakUpdate.as_view(), name="freak_update"),
     path('freaks/<int:pk>/delete', views.FreakDelete.as_view(), name="freak_delete"),
     path('articles/', views.ArticleList.as_view(), name="article_list"),
+    path('article/new/', views.ArticleCreate.as_view(), name="article_create"),
+    path('articles/<int:pk>/', views.ArticleDetail.as_view(), name="article_detail"),
 ]
