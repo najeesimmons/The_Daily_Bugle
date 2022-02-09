@@ -76,15 +76,22 @@ class ArticleList(TemplateView):
             context["header"] = "Trending Articles"
         return context
 
-class ArticleCreate (CreateView):
+class ArticleCreate(CreateView):
     model = Article
     freak = Freak
-    fields = ['headline', 'author', 'body', 'image', 'freak',]
+    fields = ['headline', 'author', 'body', 'image', 'freak']
     template_name = "article_create.html"
     success_url = "/articles/"
 
-class ArticleDetail (DetailView):
+class ArticleDetail(DetailView):
     model = Article
     template_name = "article_detail.html"
+
+class ArticleUpdate(UpdateView):
+    model = Article
+    freak = Freak
+    fields = ['headline', 'author', 'body', 'image', 'freak']
+    template_name = "article_update.html"
+    success_url = "/articles/"
 
 
