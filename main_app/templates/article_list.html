@@ -21,10 +21,13 @@
 </form>
 <div class="gallery">
   {% for article in articles %}
-  {# <a href="{% url 'article_detail' article.pk %}" #}
+{# <a href="{% url 'article_detail' article.pk %}" #}
     <div class="card">
         <div class="card-header">
             <p class="card-header-title">{{article.headline}}</p>
+        </div>
+        <div class="card-header">
+            <p class="card-header-title">by {{article.author}}</p>
         </div>
         <div class="card-image">
         <figure class="image is-square">
