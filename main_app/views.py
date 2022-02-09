@@ -1,10 +1,13 @@
 from ast import Del
+import imp
+from unicodedata import name
 from django.shortcuts import render
 from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView # <- a class to use files in templates directory as views
 from .models import Freak # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
 from .models import Article # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
+from .models import Writer # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
@@ -99,4 +102,19 @@ class ArticleDelete(DeleteView):
     template_name = "article_delete_confirmation.html"
     success_url = "/articles"
 
+class WriterList(TemplateView):
+    template_name = "writer_list.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # to get the query parameter we have to acccess it in the request.GET dictionary object        
+        name = self.request.GET.get("name")
+        # If a query exists we will filter by name 
+        if name != None:
+            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
+            context["writers"] = Writer.objects.filter(name__icontains=name)
+            context["name"] = f"Searching for {name}"
+        else:
+            context["writers"] = Writer.objects.all()
+            context["header"] = "Our Team"
+        return context

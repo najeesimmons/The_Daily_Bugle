@@ -27,5 +27,14 @@ class Article(models.Model):
     freak = models.ForeignKey(
         Freak, on_delete=models.CASCADE, related_name="articles")
     
+    def __str__(self):
+        return self.headline
+
     class Meta:
         ordering = ['headline']
+
+class Writer(models.Model):
+
+    name = models.CharField(max_length=100) 
+    bio = models.TextField(max_length=500)
+    image = models.CharField(max_length=500)
