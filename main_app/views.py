@@ -123,3 +123,8 @@ class WriterDetail(DetailView):
     model = Writer
     template_name = "writer_detail.html"
 
+class WriterDelete(DeleteView):
+    model = Writer
+    template_name = "writer_delete_confirmation.html"
+    success_url = "/writers"
+

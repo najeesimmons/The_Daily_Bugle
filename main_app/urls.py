@@ -18,5 +18,5 @@ urlpatterns = [
     path('articles/<int:pk>/delete', views.ArticleDelete.as_view(), name="article_delete"),
     path('writers/', views.WriterList.as_view(), name="writer_list"),
     path('writers/<int:pk>/', views.WriterDetail.as_view(), name="writer_detail"),
-    # path('writers/<int:pk>/delete', views.WriterDelete.as_view(), name="writer_delete"),
+    path('writers/<int:pk>/delete', views.WriterDelete.as_view(), name="writer_delete"),
 ]
