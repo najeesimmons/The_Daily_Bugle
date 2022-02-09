@@ -17,4 +17,5 @@ urlpatterns = [
     path('articles/<int:pk>/update', views.ArticleUpdate.as_view(), name="article_update"),
     path('articles/<int:pk>/delete', views.ArticleDelete.as_view(), name="article_delete"),
     path('writers/', views.WriterList.as_view(), name="writer_list"),
+    path('writers/<int:pk>/', views.WriterDetail.as_view(), name="writer_detail"),
 ]
