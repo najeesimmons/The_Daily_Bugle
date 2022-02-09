@@ -4,6 +4,7 @@ from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 from django.views.generic.base import TemplateView # <- a class to use files in templates directory as views
 from .models import Freak # MUST IMPORT IN ORDER TO PASS MODELS TO VIEWS
+from .models import Article
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
@@ -58,7 +59,22 @@ class FreakDelete(DeleteView):
     template_name = "freak_delete_confirmation.html"
     success_url = "/freaks"
 
+class ArticleList(TemplateView):
+    template_name = "article_list.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # to get the query parameter we have to acccess it in the request.GET dictionary object        
+        headline = self.request.GET.get("headline")
+        # If a query exists we will filter by name 
+        if headline != None:
+            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
+            context["articles"] = Article.objects.filter(headline__icontains=headline)
+            context["header"] = f"Searching for {headline}"
+        else:
+            context["articles"] = Article.objects.all()
+            context["header"] = "Trending Articles"
+        return context
 
 
 
